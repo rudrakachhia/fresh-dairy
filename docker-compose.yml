@@ -1,0 +1,42 @@
+version: "3.9"
+
+services:
+  app:
+    build: .
+    container_name: fresh-dairy-app
+
+    expose:
+      - "3000"
+
+    env_file:
+      - .env
+
+    depends_on:
+      - mongodb
+
+    restart: unless-stopped
+
+    networks:
+      - backend
+      - reverse-proxy
+
+  mongodb:
+    image: mongo:7
+    container_name: fresh-dairy-db
+
+    volumes:
+      - mongo-data:/data/db
+
+    restart: unless-stopped
+
+    networks:
+      - backend
+
+volumes:
+  mongo-data:
+
+networks:
+  backend:
+
+  reverse-proxy:
+    external: true

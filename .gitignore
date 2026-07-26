@@ -1,0 +1,22 @@
+# Node
+node_modules/
+
+# Environment
+.env
+
+# Logs
+logs/
+*.log
+
+# Docker
+mongo-data/
+data/
+letsencrypt/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/

@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fresh Dairy - Home</title>
+    <link rel="stylesheet" href="home-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">
+            <i class="fas fa-cow"></i>
+            <span>Fresh Dairy</span>
+        </div>
+        <div class="nav-menu">
+            <a href="#" class="active">Home</a>
+            <a href="#products">Products</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </div>
+        <div class="nav-user">
+            <span id="userEmail"></span>
+            <button id="logoutBtn" class="logout-btn">Logout</button>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>Welcome to Fresh Dairy</h1>
+            <p>Discover our premium range of farm-fresh dairy products</p>
+            <a href="#products" class="cta-button">Explore Products</a>
+        </div>
+    </header>
+
+    <section class="features">
+        <div class="feature-card">
+            <i class="fas fa-truck"></i>
+            <h3>Free Delivery</h3>
+            <p>On orders above $50</p>
+        </div>
+        <div class="feature-card">
+            <i class="fas fa-award"></i>
+            <h3>Premium Quality</h3>
+            <p>100% Fresh Products</p>
+        </div>
+        <div class="feature-card">
+            <i class="fas fa-clock"></i>
+            <h3>24/7 Support</h3>
+            <p>Customer satisfaction</p>
+        </div>
+    </section>
+
+    <section id="products" class="products-section">
+        <h2>Our Premium Products</h2>
+        <p class="section-subtitle">Discover our range of fresh dairy products</p>
+        <div class="products-grid">
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1550583724-b2692b85b150?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Fresh Milk">
+                    <div class="product-overlay">
+                        <button class="buy-btn">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h3>Fresh Milk</h3>
+                    <p>Farm-fresh whole milk</p>
+                    <div class="product-price">$3.99</div>
+                </div>
+            </div>
+          
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Cheese">
+                    <div class="product-overlay">
+                        <button class="buy-btn">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h3>Artisan Cheese</h3>
+                    <p>Handcrafted cheese</p>
+                    <div class="product-price">$6.99</div>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1589985270826-4b7bb135bc9d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Butter">
+                    <div class="product-overlay">
+                        <button class="buy-btn">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h3>Fresh Butter</h3>
+                    <p>Pure dairy butter</p>
+                    <div class="product-price">$5.99</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="yogurt-showcase">
+        <div class="yogurt-content">
+            <div class="yogurt-text">
+                <h2>Our Signature Yogurts</h2>
+                <p>Discover our range of handcrafted yogurts made from fresh, locally sourced milk</p>
+                <div class="yogurt-features">
+                    <div class="feature">
+                        <i class="fas fa-leaf"></i>
+                        <span>100% Natural</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-bacteria"></i>
+                        <span>Probiotic Rich</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-percentage"></i>
+                        <span>Low Fat Options</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="yogurt-gallery">
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Greek Yogurt">
+                <div class="gallery-overlay">
+                    <h3>Greek Yogurt</h3>
+                    <p>Rich and Creamy</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1514852451047-f8e1d1cd9b64?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Fruit Yogurt">
+                <div class="gallery-overlay">
+                    <h3>Fruit Yogurt</h3>
+                    <p>Fresh & Fruity</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1488477304112-4944851de03d?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Natural Yogurt">
+                <div class="gallery-overlay">
+                    <h3>Natural Yogurt</h3>
+                    <p>Pure Goodness</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1557597774-9d273605dfa9?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Parfait">
+                <div class="gallery-overlay">
+                    <h3>Yogurt Parfait</h3>
+                    <p>Perfect Breakfast</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about-section">
+        <div class="about-header">
+            <h2>Our Story</h2>
+            <p class="subtitle">A legacy of quality since 1998</p>
+        </div>
+        
+        <div class="about-grid">
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>About Fresh Dairy</h3>
+                    <p>Fresh Dairy brings you the finest dairy products directly from our farms. We ensure quality and freshness in every product we deliver.</p>
+                    <p>Our commitment to sustainable farming practices and animal welfare sets us apart in the dairy industry.</p>
+                </div>
+                
+                <div class="about-stats">
+                    <div class="stat" data-value="1000">
+                        <div class="stat-number">0+</div>
+                        <p>Happy Customers</p>
+                    </div>
+                    <div class="stat" data-value="50">
+                        <div class="stat-number">0+</div>
+                        <p>Products</p>
+                    </div>
+                    <div class="stat" data-value="25">
+                        <div class="stat-number">0+</div>
+                        <p>Years Experience</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="farm-gallery">
+                <div class="main-farm-image parallax-container">
+                    <img src="https://images.unsplash.com/photo-1500595046743-cd271d694d30?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80" alt="Our Dairy Farm">
+                    <div class="parallax-overlay">
+                        <h3>Our Beautiful Farm</h3>
+                        <p>Where quality meets tradition</p>
+                    </div>
+                </div>
+                <div class="farm-image-grid">
+                    <div class="farm-image">
+                        <img src="https://images.unsplash.com/photo-1596733430284-f7437764b1a9?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Happy Cows">
+                        <div class="image-caption">Happy Cows</div>
+                    </div>
+                    <div class="farm-image">
+                        <img src="https://images.unsplash.com/photo-1670291757207-679ed4adc91a?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Fresh Milk Production">
+                        <div class="image-caption">Fresh Milk Production</div>
+                    </div>
+                    <div class="farm-image">
+                        <img src="https://images.unsplash.com/photo-1598181162450-56296491375c?q=80&w=1471&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Green Pastures">
+                        <div class="image-caption">Green Pastures</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="farm-features">
+            <div class="feature">
+                <div class="feature-icon">
+                    <i class="fas fa-tractor"></i>
+                </div>
+                <div class="feature-content">
+                    <h4>Modern Farming</h4>
+                    <p>State-of-the-art dairy farming technology</p>
+                </div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">
+                    <i class="fas fa-seedling"></i>
+                </div>
+                <div class="feature-content">
+                    <h4>Sustainable</h4>
+                    <p>Eco-friendly farming practices</p>
+                </div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <div class="feature-content">
+                    <h4>Animal Care</h4>
+                    <p>Highest standards of animal welfare</p>
+                </div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">
+                    <i class="fas fa-certificate"></i>
+                </div>
+                <div class="feature-content">
+                    <h4>Certified</h4>
+                    <p>Quality certified products</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <h2>What Our Customers Say</h2>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="testimonial-content">
+                    <i class="fas fa-quote-left"></i>
+                    <p>"The best dairy products I've ever tried. Fresh and delicious!"</p>
+                </div>
+                <div class="testimonial-author">
+                    <img src="https://randomuser.me/api/portraits/women/1.jpg" alt="Customer">
+                    <div>
+                        <h4>Sarah Johnson</h4>
+                        <p>Regular Customer</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-content">
+                    <i class="fas fa-quote-left"></i>
+                    <p>"Amazing quality and excellent customer service. Highly recommended!"</p>
+                </div>
+                <div class="testimonial-author">
+                    <img src="https://randomuser.me/api/portraits/men/1.jpg" alt="Customer">
+                    <div>
+                        <h4>John Smith</h4>
+                        <p>Loyal Customer</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p><i class="fas fa-envelope"></i> info@freshdairy.com</p>
+                <p><i class="fas fa-phone"></i> (555) 123-4567</p>
+                <p><i class="fas fa-map-marker-alt"></i> 123 Dairy Farm Road</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="#products">Products</a>
+                <a href="#about">About Us</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Fresh Dairy. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="home-script.js"></script>
+</body>
+</html> 
