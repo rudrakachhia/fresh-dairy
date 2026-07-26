@@ -14,7 +14,7 @@ pipeline {
         stage('Build Image') {
             steps {
                 dir('/home/Ubuntu01/fresh_dairy') {
-                    sh 'docker-compose build'
+                    sh 'docker compose build'
                 }
             }
         }
@@ -22,7 +22,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 dir('/home/Ubuntu01/fresh_dairy') {
-                    sh 'docker-compose up -d'
+                    sh 'docker compose up -d'
                 }
             }
         }
