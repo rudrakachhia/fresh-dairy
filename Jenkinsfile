@@ -2,21 +2,28 @@ pipeline {
     agent any
 
     stages {
-        stage('Checkout') {
+
+        stage('Update Code') {
             steps {
-                checkout scm
+                dir('/home/Ubuntu01/fresh_dairy') {
+                    sh 'git pull origin main'
+                }
             }
         }
 
-        stage('Build') {
+        stage('Build Image') {
             steps {
-                sh 'docker compose build'
+                dir('/home/Ubuntu01/fresh_dairy') {
+                    sh 'docker-compose build'
+                }
             }
         }
 
         stage('Deploy') {
             steps {
-                sh 'docker compose up -d --build'
+                dir('/home/Ubuntu01/fresh_dairy') {
+                    sh 'docker-compose up -d'
+                }
             }
         }
 
