@@ -11,6 +11,18 @@ pipeline {
             }
         }
 
+
+	  stage('Prepare Report Directory') {
+            steps {
+                dir('/home/Ubuntu01/fresh_dairy') {
+                    sh '''
+                        mkdir -p reports/build-${BUILD_NUMBER}
+                        echo "Created reports/build-${BUILD_NUMBER}"
+                    '''
+                }
+            }
+        }
+
         stage('SonarQube Analysis') {
             steps {
                 dir('/home/Ubuntu01/fresh_dairy') {
@@ -45,13 +57,33 @@ pipeline {
     }
 }
 
+
+stage('Save Sonar Summary') {
+    steps {
+        dir('/home/Ubuntu01/fresh_dairy') {
+            sh '''
+                cat > reports/build-${BUILD_NUMBER}/sonar-summary.txt <<EOF
+SonarQube Project : Fresh Dairy
+Build Number      : ${BUILD_NUMBER}
+Analysis Date     : $(date)
+
+Dashboard:
+http://localhost:9000/dashboard?id=fresh-dairy
+EOF
+            '''
+        }
+    }
+}
+
+
+
 stage('OWASP Dependency Check') {
     steps {
         dir('/home/Ubuntu01/fresh_dairy') {
             dependencyCheck additionalArguments: '''
                 --scan .
                 --format HTML
-                --out reports
+                --out reports/build-${BUILD_NUMBER}
             ''',
             odcInstallation: 'DependencyCheck'
         }
@@ -81,7 +113,7 @@ stage('Publish OWASP Report') {
                   --severity HIGH,CRITICAL \
                   --format template \
                   --template "@$HOME/trivy/templates/html.tpl" \
-                  --output reports/trivy-fs-report.html \
+                  --output reports/build-${BUILD_NUMBER}/trivy-fs-report.html \
                   .
 
                 echo "Trivy scan completed."
@@ -96,7 +128,7 @@ stage('Publish Reports') {
             allowMissing: false,
             alwaysLinkToLastBuild: true,
             keepAll: true,
-            reportDir: 'reports',
+            reportDir: "reports/build-${BUILD_NUMBER}",
             reportFiles: 'trivy-fs-report.html',
             reportName: 'Trivy Security Report'
         ])
@@ -104,7 +136,10 @@ stage('Publish Reports') {
 }
 stage('Archive Reports') {
     steps {
-        archiveArtifacts artifacts: 'reports/*.html', fingerprint: true
+        archiveArtifacts(
+    artifacts: "reports/build-${BUILD_NUMBER}/*",
+    fingerprint: true
+)
     }
 }
 
