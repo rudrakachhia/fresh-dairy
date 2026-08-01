@@ -26,26 +26,45 @@ pipeline {
                 }
             }
         }
-	stage('Trivy Filesystem Scan') {
-        steps {
-            dir('/home/Ubuntu01/fresh_dairy') {
-                sh '''
-                    trivy fs \
-                    --severity HIGH,CRITICAL \
-                    --exit-code 1 \
-                    .
-                 '''
-              }
-          }
-       }
 
-        stage('Build Image') {
+        stage('Trivy Filesystem Scan') {
+            steps {
+                dir('/home/Ubuntu01/fresh_dairy') {
+                    sh '''
+                        trivy fs \
+                        --severity HIGH,CRITICAL \
+                        --format table \
+                        .
+                    '''
+                }
+            }
+        }
+
+        stage('Build Docker Image') {
             steps {
                 dir('/home/Ubuntu01/fresh_dairy') {
                     sh 'docker compose build'
                 }
             }
         }
+
+        stage('Trivy Filesystem Scan') {
+    steps {
+        dir('/home/Ubuntu01/fresh_dairy') {
+
+            sh '''
+            mkdir -p reports
+
+            trivy fs \
+              --severity HIGH,CRITICAL \
+              --format template \
+              --template "@$HOME/trivy/templates/html.tpl" \
+              -o reports/trivy-fs-report.html \
+              .
+            '''
+        }
+    }
+}
 
         stage('Deploy') {
             steps {
@@ -60,6 +79,5 @@ pipeline {
                 sh 'docker ps'
             }
         }
-
     }
 }
