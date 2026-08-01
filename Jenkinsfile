@@ -27,28 +27,7 @@ pipeline {
             }
         }
 
-        stage('Trivy Filesystem Scan') {
-            steps {
-                dir('/home/Ubuntu01/fresh_dairy') {
-                    sh '''
-                        trivy fs \
-                        --severity HIGH,CRITICAL \
-                        --format table \
-                        .
-                    '''
-                }
-            }
-        }
-
-        stage('Build Docker Image') {
-            steps {
-                dir('/home/Ubuntu01/fresh_dairy') {
-                    sh 'docker compose build'
-                }
-            }
-        }
-
-        stage('Trivy Filesystem Scan') {
+                stage('Trivy Filesystem Scan') {
     steps {
         dir('/home/Ubuntu01/fresh_dairy') {
 
@@ -65,6 +44,14 @@ pipeline {
         }
     }
 }
+
+        stage('Build Docker Image') {
+            steps {
+                dir('/home/Ubuntu01/fresh_dairy') {
+                    sh 'docker compose build'
+                }
+            }
+        }
 
         stage('Deploy') {
             steps {
