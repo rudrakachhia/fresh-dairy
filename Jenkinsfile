@@ -45,6 +45,32 @@ pipeline {
     }
 }
 
+stage('OWASP Dependency Check') {
+    steps {
+        dir('/home/Ubuntu01/fresh_dairy') {
+            dependencyCheck additionalArguments: '''
+                --scan .
+                --format HTML
+                --out reports
+            ''',
+            odcInstallation: 'DependencyCheck'
+        }
+    }
+}
+
+stage('Publish OWASP Report') {
+    steps {
+        publishHTML(target: [
+            allowMissing: false,
+            alwaysLinkToLastBuild: true,
+            keepAll: true,
+            reportDir: 'reports',
+            reportFiles: 'dependency-check-report.html',
+            reportName: 'OWASP Dependency Report'
+        ])
+    }
+}
+
         stage('Trivy Filesystem Scan') {
     steps {
         dir('/home/Ubuntu01/fresh_dairy') {
