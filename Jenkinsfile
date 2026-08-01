@@ -26,6 +26,18 @@ pipeline {
                 }
             }
         }
+	stage('Trivy Filesystem Scan') {
+        steps {
+            dir('/home/Ubuntu01/fresh_dairy') {
+                sh '''
+                    trivy fs \
+                    --severity HIGH,CRITICAL \
+                    --exit-code 1 \
+                    .
+                 '''
+              }
+          }
+       }
 
         stage('Build Image') {
             steps {
