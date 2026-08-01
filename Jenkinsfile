@@ -11,6 +11,22 @@ pipeline {
             }
         }
 
+        stage('SonarQube Analysis') {
+            steps {
+                dir('/home/Ubuntu01/fresh_dairy') {
+
+                    withSonarQubeEnv('SonarScanner') {
+
+                        sh '''
+                            sonar-scanner \
+                              -Dsonar.login=$SONAR_AUTH_TOKEN
+                        '''
+                    }
+
+                }
+            }
+        }
+
         stage('Build Image') {
             steps {
                 dir('/home/Ubuntu01/fresh_dairy') {
@@ -32,5 +48,6 @@ pipeline {
                 sh 'docker ps'
             }
         }
+
     }
 }
