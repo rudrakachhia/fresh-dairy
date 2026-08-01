@@ -27,20 +27,21 @@ pipeline {
             }
         }
 
-                stage('Trivy Filesystem Scan') {
+        stage('Trivy Filesystem Scan') {
     steps {
         dir('/home/Ubuntu01/fresh_dairy') {
-
             sh '''
-            mkdir -p reports
+                mkdir -p reports
 
-            trivy fs \
-              --severity HIGH,CRITICAL \
-              --format template \
-              --template "@$HOME/trivy/templates/html.tpl" \
-              -o reports/trivy-fs-report.html \
-              .
-            '''
+                trivy fs \
+                  --severity HIGH,CRITICAL \
+                  --format template \
+                  --template "@$HOME/trivy/templates/html.tpl" \
+                  --output reports/trivy-fs-report.html \
+                  .
+
+                echo "Trivy scan completed."
+           '''
         }
     }
 }
