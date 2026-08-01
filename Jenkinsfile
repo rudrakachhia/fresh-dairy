@@ -32,11 +32,12 @@ pipeline {
     steps {
         timeout(time: 5, unit: 'MINUTES') {
             script {
-                def qg = waitForQualityGate()
+                def qg = waitForQualityGate(abortPipeline: false)
 
                 if (qg.status != 'OK') {
                     echo "⚠ Quality Gate: ${qg.status}"
-                    echo "Continuing pipeline for demonstration..."
+                    echo "Continuing pipeline..."
+                    currentBuild.result = 'UNSTABLE'
                 } else {
                     echo "✅ Quality Gate Passed"
                 }
