@@ -64,6 +64,21 @@ pipeline {
     }
 }
 
+stage('Publish Reports') {
+    steps {
+        publishHTML(target: [
+            allowMissing: false,
+            alwaysLinkToLastBuild: true,
+            keepAll: true,
+            reportDir: 'reports',
+            reportFiles: 'trivy-fs-report.html',
+            reportName: 'Trivy Security Report'
+        ])
+    }
+}
+
+
+
         stage('Build Docker Image') {
             steps {
                 dir('/home/Ubuntu01/fresh_dairy') {
