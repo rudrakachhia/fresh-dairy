@@ -76,7 +76,11 @@ stage('Publish Reports') {
         ])
     }
 }
-
+stage('Archive Reports') {
+    steps {
+        archiveArtifacts artifacts: 'reports/*.html', fingerprint: true
+    }
+}
 
 
         stage('Build Docker Image') {
