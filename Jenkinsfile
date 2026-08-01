@@ -26,20 +26,25 @@ pipeline {
                 }
             }
         }
+	
+
 	stage('Quality Gate') {
     steps {
         timeout(time: 5, unit: 'MINUTES') {
+            script {
                 def qg = waitForQualityGate()
 
-    if (qg.status != 'OK') {
-        echo "⚠ Quality Gate: ${qg.status}"
-        echo "Continuing pipeline for demonstration..."
-    } else {
-        echo "✔ Quality Gate Passed"
-    }
+                if (qg.status != 'OK') {
+                    echo "⚠ Quality Gate: ${qg.status}"
+                    echo "Continuing pipeline for demonstration..."
+                } else {
+                    echo "✅ Quality Gate Passed"
+                }
+            }
         }
     }
 }
+
         stage('Trivy Filesystem Scan') {
     steps {
         dir('/home/Ubuntu01/fresh_dairy') {
