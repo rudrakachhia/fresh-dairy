@@ -14,15 +14,15 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
                 dir('/home/Ubuntu01/fresh_dairy') {
+                    script {
+                        def scannerHome = tool 'SonarScanner'
 
-                    withSonarQubeEnv('SonarScanner') {
-
-                        sh '''
-                            sonar-scanner \
-                              -Dsonar.login=$SONAR_AUTH_TOKEN
-                        '''
+                        withSonarQubeEnv('SonarScanner') {
+                            sh """
+                                ${scannerHome}/bin/sonar-scanner
+                            """
+                        }
                     }
-
                 }
             }
         }
