@@ -152,6 +152,37 @@ stage('Archive Reports') {
             }
         }
 
+	stage('Trivy Docker Image Scan') {
+    steps {
+        dir('/home/Ubuntu01/fresh_dairy') {
+            sh '''
+                trivy image \
+                  --severity HIGH,CRITICAL \
+                  --format template \
+                  --template "@$HOME/trivy/templates/html.tpl" \
+                  --output reports/build-${BUILD_NUMBER}/trivy-image-report.html \
+                  fresh_dairy-app:latest
+
+                echo "Docker Image Scan Completed."
+            '''
+        }
+    }
+}
+
+
+	stage('Publish Docker Image Report') {
+    steps {
+        publishHTML(target: [
+            allowMissing: false,
+            alwaysLinkToLastBuild: true,
+            keepAll: true,
+            reportDir: "reports/build-${BUILD_NUMBER}",
+            reportFiles: "trivy-image-report.html",
+            reportName: "Trivy Docker Image Report"
+        ])
+    }
+}
+
         stage('Deploy') {
             steps {
                 dir('/home/Ubuntu01/fresh_dairy') {
