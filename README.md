@@ -1,4 +1,4 @@
-# 🥛 Fresh Dairy - End-to-End DevSecOps Pipeline
+﻿# 🥛 Fresh Dairy - End-to-End DevSecOps Pipeline
 
 A production-inspired **DevSecOps CI/CD Pipeline** built around a Dockerized **Node.js + MongoDB** application.
 
@@ -225,13 +225,22 @@ Configured Services:
 
 > Screenshots will be added soon.
 
-- Fresh Dairy Application
-- Jenkins Pipeline
-- SonarQube Dashboard
-- OWASP Report
-- Trivy Report
-- Grafana Dashboard
-- Nginx Proxy Manager
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ---
 
