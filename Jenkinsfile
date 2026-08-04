@@ -245,6 +245,19 @@ stage('Archive Reports') {
         docker ps
         '''
     }
+
+}
+	stage('Cleanup Old Versions') {
+    steps {
+        sh '''
+            docker images "rud79/fresh-dairy" \
+            --format "{{.Repository}}:{{.Tag}}" \
+            | grep -v "latest" \
+            | xargs -r docker rmi
+
+            docker image prune -f
+        '''
+    }
 }
 }
 }
