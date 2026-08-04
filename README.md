@@ -223,8 +223,16 @@ Configured Services:
 
 # 📸 Screenshots
 
-> Screenshots will be added soon.
 
+
+<img width="1580" height="764" alt="Screenshot 2026-08-02 163611" src="https://github.com/user-attachments/assets/6952406d-88c8-41d3-932f-70745ca1d0b7" />
+<img width="1584" height="769" alt="Screenshot 2026-08-02 155258" src="https://github.com/user-attachments/assets/0b89ccac-5243-4d74-a0c7-6ed955c98827" />
+<img width="1562" height="759" alt="Screenshot 2026-08-02 163235" src="https://github.com/user-attachments/assets/35246a12-6ee8-44fb-9a56-7de2ff9b6c26" />
+<img width="1574" height="731" alt="Screenshot 2026-08-02 163410" src="https://github.com/user-attachments/assets/586e13b8-a197-4386-9341-4c5b3ae7c98a" />
+<img width="1575" height="731" alt="Screenshot 2026-08-02 163441" src="https://github.com/user-attachments/assets/d64c3445-c684-49e4-a2cc-a15ac456af5a" />
+<img width="1593" height="760" alt="Screenshot 2026-08-02 163523" src="https://github.com/user-attachments/assets/7dcc9368-5b46-44da-aa40-5120af4bb101" />
+<img width="1574" height="753" alt="Screenshot 2026-08-02 155035" src="https://github.com/user-attachments/assets/aabffb1c-21d2-4322-8a03-7464d4c504ff" />
+<img width="1584" height="769" alt="Screenshot 2026-08-02 155258" src="https://github.com/user-attachments/assets/6d40584b-0843-451d-beb0-266112ee7bcb" />
 
 
 
