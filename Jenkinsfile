@@ -1,9 +1,5 @@
 pipeline {
     agent any
-	environment {
-    IMAGE_NAME = "fresh_dairy-app"
-    IMAGE_TAG = "v${BUILD_NUMBER}"
-}
 	options {
     buildDiscarder(logRotator(
         numToKeepStr: '10',
@@ -154,19 +150,12 @@ stage('Archive Reports') {
 
 
         stage('Build Docker Image') {
-    steps {
-        dir('/home/Ubuntu01/fresh_dairy') {
-
-            sh '''
-            docker build \
-            -t ${IMAGE_NAME}:${IMAGE_TAG} \
-            -t ${IMAGE_NAME}:latest \
-            .
-            '''
-
+            steps {
+                dir('/home/Ubuntu01/fresh_dairy') {
+                    sh 'docker compose build'
+                }
+            }
         }
-    }
-}
 
 	stage('Trivy Docker Image Scan') {
     steps {
@@ -207,19 +196,10 @@ stage('Archive Reports') {
             }
         }
 
-        stage('Verify Deployment') {
-    steps {
-
-        sh '''
-        echo "Current Images"
-        docker images | grep fresh_dairy-app
-
-        echo ""
-
-        echo "Running Containers"
-
-        docker ps
-        '''
+        stage('Verify') {
+            steps {
+                sh 'docker ps'
+            }
+        }
     }
-}
 }
