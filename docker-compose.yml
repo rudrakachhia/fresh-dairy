@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   app:
-    build: image: fresh_dairy-app:latest
+    image: fresh_dairy-app:latest
     container_name: fresh-dairy-app
 
     expose:
