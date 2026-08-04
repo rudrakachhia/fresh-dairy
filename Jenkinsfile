@@ -156,17 +156,23 @@ stage('Archive Reports') {
         stage('Build Docker Image') {
     steps {
         dir('/home/Ubuntu01/fresh_dairy') {
+            script {
+                env.IMAGE_NAME = "rud79/fresh-dairy"
+                env.IMAGE_TAG = "v${BUILD_NUMBER}"
 
-            sh '''
-            docker build \
-            -t ${IMAGE_NAME}:${IMAGE_TAG} \
-            -t ${IMAGE_NAME}:latest \
-            .
-            '''
+                sh """
+                    docker compose build
 
+                    docker tag fresh_dairy-app:latest ${IMAGE_NAME}:${IMAGE_TAG}
+                    docker tag fresh_dairy-app:latest ${IMAGE_NAME}:latest
+                """
+            }
         }
     }
 }
+
+
+
 
 	stage('Trivy Docker Image Scan') {
     steps {
@@ -196,6 +202,30 @@ stage('Archive Reports') {
             reportFiles: "trivy-image-report.html",
             reportName: "Trivy Docker Image Report"
         ])
+    }
+}
+
+	stage('Push Docker Image') {
+    steps {
+        script {
+
+            withCredentials([usernamePassword(
+                credentialsId: 'dockerhub',
+                usernameVariable: 'DOCKER_USER',
+                passwordVariable: 'DOCKER_PASS'
+            )]) {
+
+                sh '''
+                echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
+
+                docker push ${IMAGE_NAME}:${IMAGE_TAG}
+
+                docker push ${IMAGE_NAME}:latest
+
+                docker logout
+                '''
+            }
+        }
     }
 }
 
