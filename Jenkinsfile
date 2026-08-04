@@ -1,9 +1,11 @@
 pipeline {
     agent any
+	
 	environment {
-    IMAGE_NAME = "fresh_dairy-app"
+    IMAGE_NAME = "rud79/fresh-dairy"
     IMAGE_TAG = "v${BUILD_NUMBER}"
 }
+
 	options {
     buildDiscarder(logRotator(
         numToKeepStr: '10',
