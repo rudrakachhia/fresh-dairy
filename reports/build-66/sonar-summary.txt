@@ -1,6 +1,0 @@
-SonarQube Project : Fresh Dairy
-Build Number      : 66
-Analysis Date     : Sun Aug  2 11:10:15 UTC 2026
-
-Dashboard:
-http://localhost:9000/dashboard?id=fresh-dairy
