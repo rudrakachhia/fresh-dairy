@@ -156,17 +156,13 @@ stage('Archive Reports') {
         stage('Build Docker Image') {
     steps {
         dir('/home/Ubuntu01/fresh_dairy') {
-            script {
-                env.IMAGE_NAME = "rud79/fresh-dairy"
-                env.IMAGE_TAG = "v${BUILD_NUMBER}"
 
-                sh """
-                    docker compose build
+            sh """
+                docker compose build
 
-                    docker tag fresh_dairy-app:latest ${IMAGE_NAME}:${IMAGE_TAG}
-                    docker tag fresh_dairy-app:latest ${IMAGE_NAME}:latest
-                """
-            }
+                docker tag fresh_dairy-app:latest ${IMAGE_NAME}:${IMAGE_TAG}
+                docker tag fresh_dairy-app:latest ${IMAGE_NAME}:latest
+            """
         }
     }
 }
@@ -183,7 +179,7 @@ stage('Archive Reports') {
                   --format template \
                   --template "@$HOME/trivy/templates/html.tpl" \
                   --output reports/build-${BUILD_NUMBER}/trivy-image-report.html \
-                  fresh_dairy-app:latest
+                  ${IMAGE_NAME}:latest
 
                 echo "Docker Image Scan Completed."
             '''
@@ -207,24 +203,20 @@ stage('Archive Reports') {
 
 	stage('Push Docker Image') {
     steps {
-        script {
+        withCredentials([usernamePassword(
+            credentialsId: 'dockerhub',
+            usernameVariable: 'DOCKER_USER',
+            passwordVariable: 'DOCKER_PASS'
+        )]) {
 
-            withCredentials([usernamePassword(
-                credentialsId: 'dockerhub',
-                usernameVariable: 'DOCKER_USER',
-                passwordVariable: 'DOCKER_PASS'
-            )]) {
+            sh """
+            echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
 
-                sh '''
-                echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
+            docker push ${IMAGE_NAME}:${IMAGE_TAG}
+            docker push ${IMAGE_NAME}:latest
 
-                docker push ${IMAGE_NAME}:${IMAGE_TAG}
-
-                docker push ${IMAGE_NAME}:latest
-
-                docker logout
-                '''
-            }
+            docker logout
+            """
         }
     }
 }
