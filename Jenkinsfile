@@ -3,7 +3,6 @@ pipeline {
 	
 	environment {
     IMAGE_NAME = "rud79/fresh-dairy"
-    IMAGE_TAG = "v${BUILD_NUMBER}"
 }
 
 	options {
@@ -22,6 +21,28 @@ pipeline {
             }
         }
 
+        stage('Semantic Versioning') {
+            steps {
+                dir('/home/Ubuntu01/fresh_dairy') {
+                    script {
+                        def version = sh(
+                            script: 'git describe --tags --abbrev=0 2>/dev/null || echo ""',
+                            returnStdout: true
+                        ).trim()
+                        
+                        if (version == '') {
+                            version = "v${BUILD_NUMBER}"
+                            echo "No git tags found, using build number: ${version}"
+                        } else {
+                            echo "Found git tag: ${version}"
+                        }
+                        
+                        env.IMAGE_TAG = version
+                        echo "IMAGE_TAG set to: ${env.IMAGE_TAG}"
+                    }
+                }
+            }
+        }
 
 	  stage('Prepare Report Directory') {
             steps {
