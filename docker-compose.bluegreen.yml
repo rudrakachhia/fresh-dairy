@@ -1,0 +1,43 @@
+services:
+
+  blue:
+    image: rud79/fresh-dairy:${BLUE_IMAGE_TAG}
+    container_name: fresh-dairy-blue
+
+    expose:
+      - "3000"
+
+    env_file:
+      - .env
+
+    restart: unless-stopped
+
+    networks:
+      - fresh_dairy_backend
+      - reverse-proxy
+
+
+  green:
+    image: rud79/fresh-dairy:${GREEN_IMAGE_TAG}
+    container_name: fresh-dairy-green
+
+    expose:
+      - "3000"
+
+    env_file:
+      - .env
+
+    restart: unless-stopped
+
+    networks:
+      - fresh_dairy_backend
+      - reverse-proxy
+
+
+networks:
+
+  fresh_dairy_backend:
+    external: true
+
+  reverse-proxy:
+    external: true

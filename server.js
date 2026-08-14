@@ -111,7 +111,20 @@ app.get('/api/check-auth', requireAuth, async (req, res) => {
         res.status(500).json({ error: 'Error checking authentication' });
     }
 });
+
 */
+
+//website health check 
+
+app.get('/health', (req, res) => {
+    res.status(200).json({
+        status: 'ok'
+    });
+});
+
+
+
+
 // Serve the login page
 app.get('/', (req, res) => {
     if (req.session.userId) {
